@@ -11,6 +11,7 @@
 #include "InputActionValue.h"
 #include "EnhancedInputSubsystems.h"
 #include "Engine/LocalPlayer.h"
+#include "EPFBaseBuilding.h"
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
@@ -53,6 +54,8 @@ void AExtremePotatoFarmerPlayerController::SetupInputComponent()
 		EnhancedInputComponent->BindAction(SetDestinationTouchAction, ETriggerEvent::Triggered, this, &AExtremePotatoFarmerPlayerController::OnTouchTriggered);
 		EnhancedInputComponent->BindAction(SetDestinationTouchAction, ETriggerEvent::Completed, this, &AExtremePotatoFarmerPlayerController::OnTouchReleased);
 		EnhancedInputComponent->BindAction(SetDestinationTouchAction, ETriggerEvent::Canceled, this, &AExtremePotatoFarmerPlayerController::OnTouchReleased);
+	
+		EnhancedInputComponent->BindAction(AttemptBuildingSpawnClickAction, ETriggerEvent::Started, this, &AExtremePotatoFarmerPlayerController::AttemptBuildingPlacement);
 	}
 	else
 	{
@@ -122,4 +125,23 @@ void AExtremePotatoFarmerPlayerController::OnTouchReleased()
 {
 	bIsTouch = false;
 	OnSetDestinationReleased();
+}
+
+void AExtremePotatoFarmerPlayerController::AttemptBuildingPlacement()
+{
+	// We look for the location in the world where the player has pressed the input
+	FVector buildingSpawnLocation;
+	FHitResult Hit;
+	bool bHitSuccessful = false;
+	bHitSuccessful = GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility, true, Hit);
+
+
+	// If we hit a surface, cache the location
+	if (bHitSuccessful)
+	{
+		buildingSpawnLocation = Hit.Location;
+		FActorSpawnParameters params;
+		FRotator rotation;
+		GetWorld()->SpawnActor<AEPFBaseBuilding>(tempBuildingToSpawn, buildingSpawnLocation, rotation, params);
+	}
 }

@@ -11,6 +11,7 @@
 class UNiagaraSystem;
 class UInputMappingContext;
 class UInputAction;
+class AEPFBaseBuilding;
 
 DECLARE_LOG_CATEGORY_EXTERN(LogTemplateCharacter, Log, All);
 
@@ -42,6 +43,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
 	UInputAction* SetDestinationTouchAction;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UInputAction* AttemptBuildingSpawnClickAction;
+
 protected:
 	/** True if the controlled character should navigate to the mouse cursor. */
 	uint32 bMoveToMouseCursor : 1;
@@ -58,8 +62,15 @@ protected:
 	void OnTouchTriggered();
 	void OnTouchReleased();
 
+	void AttemptBuildingPlacement();
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	UClass* tempBuildingToSpawn;
+
 private:
 	FVector CachedDestination;
+
+	
 
 	bool bIsTouch; // Is it a touch device
 	float FollowTime; // For how long it has been pressed
