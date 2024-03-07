@@ -6,17 +6,7 @@
 #include "GameFramework/GameStateBase.h"
 #include "EPFGameState.generated.h"
 
-UENUM()
-enum BUILDING_TYPE
-{
-	FARM,
-	HOUSE,
-	MINE,
-	FOREST,
-	BARRACKS,
-	CAMP
-};
-
+class AEPFBaseBuilding;
 /**
  * 
  */
@@ -27,8 +17,11 @@ class EXTREMEPOTATOFARMER_API AEPFGameState : public AGameStateBase
 	
 public:
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-	TEnumAsByte<BUILDING_TYPE> mSelectedBuilding = FARM;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	TArray<TSubclassOf<AEPFBaseBuilding>> mBuildingTypes;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	int mCurrentSelectedBuildingIndex = 0;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	int mNumberOfPotatoes = 0;
@@ -42,4 +35,14 @@ public:
 	int mIron = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	int mGold = 0;
+
+	void CycleSelectedBuildingForward()
+	{
+		mCurrentSelectedBuildingIndex = (mCurrentSelectedBuildingIndex + 1) % mBuildingTypes.Num();
+	}
+
+	void CycleSelectedBuildingBackwards()
+	{
+		(mCurrentSelectedBuildingIndex - 1) < 0 ? mCurrentSelectedBuildingIndex = mBuildingTypes.Num() - 1 : mCurrentSelectedBuildingIndex -= 1;
+	}
 };

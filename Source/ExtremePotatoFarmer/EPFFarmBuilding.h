@@ -13,8 +13,13 @@ UCLASS()
 class EXTREMEPOTATOFARMER_API AEPFFarmBuilding : public AEPFBaseBuilding
 {
 	GENERATED_BODY()
-	
+
 public:
+
+	AEPFFarmBuilding()
+	{
+		mName = "Farm";
+	}
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	int mNumOfPotatoesToFarm = 3;

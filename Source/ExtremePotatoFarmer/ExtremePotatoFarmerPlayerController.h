@@ -46,6 +46,12 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction* AttemptBuildingSpawnClickAction;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UInputAction* CycleThroughBuildingsAction;
+
+	struct FEnhancedInputActionValueBinding* CycleActionBinding;
+
+
 protected:
 	/** True if the controlled character should navigate to the mouse cursor. */
 	uint32 bMoveToMouseCursor : 1;
@@ -64,8 +70,7 @@ protected:
 
 	void AttemptBuildingPlacement();
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
-	UClass* tempBuildingToSpawn;
+	void CycleSelectedBuilding();
 
 private:
 	FVector CachedDestination;

@@ -12,6 +12,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "Engine/LocalPlayer.h"
 #include "EPFBaseBuilding.h"
+#include "EPFGameState.h"
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
@@ -56,6 +57,12 @@ void AExtremePotatoFarmerPlayerController::SetupInputComponent()
 		EnhancedInputComponent->BindAction(SetDestinationTouchAction, ETriggerEvent::Canceled, this, &AExtremePotatoFarmerPlayerController::OnTouchReleased);
 	
 		EnhancedInputComponent->BindAction(AttemptBuildingSpawnClickAction, ETriggerEvent::Started, this, &AExtremePotatoFarmerPlayerController::AttemptBuildingPlacement);
+		
+		EnhancedInputComponent->BindAction(CycleThroughBuildingsAction, ETriggerEvent::Started, this, &AExtremePotatoFarmerPlayerController::CycleSelectedBuilding);
+		EnhancedInputComponent->BindAction(CycleThroughBuildingsAction, ETriggerEvent::Triggered, this, &AExtremePotatoFarmerPlayerController::CycleSelectedBuilding);
+		EnhancedInputComponent->BindAction(CycleThroughBuildingsAction, ETriggerEvent::Completed, this, &AExtremePotatoFarmerPlayerController::CycleSelectedBuilding);
+
+		CycleActionBinding = &EnhancedInputComponent->BindActionValue(CycleThroughBuildingsAction);
 	}
 	else
 	{
@@ -139,9 +146,32 @@ void AExtremePotatoFarmerPlayerController::AttemptBuildingPlacement()
 	// If we hit a surface, cache the location
 	if (bHitSuccessful)
 	{
-		buildingSpawnLocation = Hit.Location;
-		FActorSpawnParameters params;
-		FRotator rotation;
-		GetWorld()->SpawnActor<AEPFBaseBuilding>(tempBuildingToSpawn, buildingSpawnLocation, rotation, params);
+		if (AEPFGameState* state = GetWorld()->GetGameState<AEPFGameState>())
+		{
+			buildingSpawnLocation = Hit.Location;
+			FActorSpawnParameters params;
+			FRotator rotation;
+			GetWorld()->SpawnActor<AEPFBaseBuilding>(state->mBuildingTypes[state->mCurrentSelectedBuildingIndex], buildingSpawnLocation, rotation, params);
+		}
+	}
+}
+
+void AExtremePotatoFarmerPlayerController::CycleSelectedBuilding()
+{
+	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(InputComponent))
+	{
+		float scroll = CycleActionBinding->GetValue().GetMagnitude();
+
+		if (AEPFGameState* state = GetWorld()->GetGameState<AEPFGameState>())
+		{
+			if (scroll > 0)
+			{
+				state->CycleSelectedBuildingForward();
+			}
+			else if (scroll < 0)
+			{
+				state->CycleSelectedBuildingBackwards();
+			}
+		}
 	}
 }

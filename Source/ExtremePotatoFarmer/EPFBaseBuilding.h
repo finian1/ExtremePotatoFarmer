@@ -10,8 +10,11 @@ UCLASS()
 class EXTREMEPOTATOFARMER_API AEPFBaseBuilding : public AActor
 {
 	GENERATED_BODY()
+
+public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	FString mName = "Base";
 	
-public:	
 	// Sets default values for this actor's properties
 	AEPFBaseBuilding();
 
