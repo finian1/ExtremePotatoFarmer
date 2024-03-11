@@ -3,3 +3,7 @@
 
 #include "EPFHouseBuilding.h"
 
+void AEPFHouseBuilding::BeginPlay()
+{
+
+}

@@ -7,6 +7,7 @@
 #include "EPFGameState.generated.h"
 
 class AEPFBaseBuilding;
+class AEPFBaseMinion;
 /**
  * 
  */
@@ -26,6 +27,12 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	int mNumberOfPotatoes = 0;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	int mNumberOfCitizens = 0;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	int mNumberOfHouses = 0;
+
 	//Materials
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	int mWood = 0;
@@ -35,6 +42,26 @@ public:
 	int mIron = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	int mGold = 0;
+
+	//Primary town buildings
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	AEPFBaseBuilding* mTownSchoolBuilding;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	AEPFBaseBuilding* mTownMineBuilding;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	AEPFBaseBuilding* mTownForestBuilding;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	AEPFBaseBuilding* mTownBarracksBuilding;
+
+	//A list of citizens that still need to go to school.
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	TArray<AEPFBaseMinion*> mUntrainedCitizens;
+	//List of minions that are trained but unemployed.
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	TArray<AEPFBaseMinion*> mUnemployedTrainedCitizens;
 
 	void CycleSelectedBuildingForward()
 	{

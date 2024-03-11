@@ -33,12 +33,12 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	int mNumberOfWorkers = 0;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float mTimeToWork = 3.0f;
+
 	//Functions
 
 	UFUNCTION(BlueprintCallable)
 	virtual void Work();
-
-	//Temp variables
-	float timer = 0.0f;
 
 };

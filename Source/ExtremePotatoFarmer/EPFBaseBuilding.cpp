@@ -12,6 +12,8 @@ AEPFBaseBuilding::AEPFBaseBuilding()
 	mBuildingMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>("Building Mesh");
 	mBuildingMeshComponent->SetupAttachment(GetRootComponent());
 
+	mBuildingMeshComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+
 }
 
 // Called when the game starts or when spawned
@@ -24,13 +26,6 @@ void AEPFBaseBuilding::BeginPlay()
 // Called every frame
 void AEPFBaseBuilding::Tick(float DeltaTime)
 {
-	Super::Tick(DeltaTime);
-	timer += DeltaTime;
-	if(timer > 2.0)
-	{
-		Work();
-		timer = 0;
-	}
 }
 
 void AEPFBaseBuilding::Work()

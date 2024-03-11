@@ -20,5 +20,6 @@ public:
 	{
 		mName = "House";
 	}
-	
+
+	void BeginPlay();
 };
