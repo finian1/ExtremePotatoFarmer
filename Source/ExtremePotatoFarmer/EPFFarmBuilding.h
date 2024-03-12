@@ -6,6 +6,7 @@
 #include "EPFBaseBuilding.h"
 #include "EPFFarmBuilding.generated.h"
 
+class AEPFCitizenMinion;
 /**
  * 
  */
@@ -24,10 +25,16 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	int mNumOfPotatoesToFarm = 3;
 
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	AEPFCitizenMinion* mWorker;
+
 	UFUNCTION(BlueprintCallable)
 	void GeneratePotatoes(int quantity);
 
 	void Work() override;
 
+	void AssignWorker() override;
 
+	void RemoveWorker() override;
 };

@@ -3,14 +3,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "EPFBaseBuilding.h"
+#include "EPFMultiWorkerBuilding.h"
 #include "EPFMineBuilding.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class EXTREMEPOTATOFARMER_API AEPFMineBuilding : public AEPFBaseBuilding
+class EXTREMEPOTATOFARMER_API AEPFMineBuilding : public AEPFMultiWorkerBuilding
 {
 	GENERATED_BODY()
 	

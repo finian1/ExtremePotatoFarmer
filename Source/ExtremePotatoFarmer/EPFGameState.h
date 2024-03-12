@@ -7,7 +7,7 @@
 #include "EPFGameState.generated.h"
 
 class AEPFBaseBuilding;
-class AEPFBaseMinion;
+class AEPFCitizenMinion;
 /**
  * 
  */
@@ -58,10 +58,10 @@ public:
 
 	//A list of citizens that still need to go to school.
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-	TArray<AEPFBaseMinion*> mUntrainedCitizens;
+	TArray<AEPFCitizenMinion*> mUntrainedCitizens;
 	//List of minions that are trained but unemployed.
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-	TArray<AEPFBaseMinion*> mUnemployedTrainedCitizens;
+	TArray<AEPFCitizenMinion*> mUnemployedTrainedCitizens;
 
 	void CycleSelectedBuildingForward()
 	{

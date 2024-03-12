@@ -4,7 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "AIController.h"
 #include "EPFBaseBuilding.generated.h"
+
+class AEPFCitizenMinion;
 
 UCLASS()
 class EXTREMEPOTATOFARMER_API AEPFBaseBuilding : public AActor
@@ -41,4 +44,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	virtual void Work();
 
+	UFUNCTION(BlueprintCallable)
+	virtual void AssignWorker();
+
+	UFUNCTION(BlueprintCallable)
+	virtual void RemoveWorker();
 };

@@ -3,3 +3,13 @@
 
 #include "EPFForestBuilding.h"
 
+void AEPFForestBuilding::GenerateWood(int quantity)
+{
+
+}
+
+void AEPFForestBuilding::Work()
+{
+
+}
+

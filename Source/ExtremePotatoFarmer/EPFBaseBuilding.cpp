@@ -3,16 +3,18 @@
 
 #include "EPFBaseBuilding.h"
 
+
 // Sets default values
 AEPFBaseBuilding::AEPFBaseBuilding()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	mBuildingMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>("Building Mesh");
 	mBuildingMeshComponent->SetupAttachment(GetRootComponent());
 
 	mBuildingMeshComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+
 
 }
 
@@ -29,6 +31,16 @@ void AEPFBaseBuilding::Tick(float DeltaTime)
 }
 
 void AEPFBaseBuilding::Work()
+{
+
+}
+
+void AEPFBaseBuilding::AssignWorker()
+{
+	
+}
+
+void AEPFBaseBuilding::RemoveWorker()
 {
 
 }

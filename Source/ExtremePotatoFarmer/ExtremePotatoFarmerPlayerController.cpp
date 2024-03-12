@@ -148,10 +148,17 @@ void AExtremePotatoFarmerPlayerController::AttemptBuildingPlacement()
 	{
 		if (AEPFGameState* state = GetWorld()->GetGameState<AEPFGameState>())
 		{
-			buildingSpawnLocation = Hit.Location;
-			FActorSpawnParameters params;
-			FRotator rotation;
-			GetWorld()->SpawnActor<AEPFBaseBuilding>(state->mBuildingTypes[state->mCurrentSelectedBuildingIndex], buildingSpawnLocation, rotation, params);
+			if (AEPFBaseBuilding* building = dynamic_cast<AEPFBaseBuilding*>(Hit.GetActor()))
+			{
+				building->AssignWorker();
+			}
+			else
+			{
+				buildingSpawnLocation = Hit.Location;
+				FActorSpawnParameters params;
+				FRotator rotation;
+				GetWorld()->SpawnActor<AEPFBaseBuilding>(state->mBuildingTypes[state->mCurrentSelectedBuildingIndex], buildingSpawnLocation, rotation, params);
+			}
 		}
 	}
 }

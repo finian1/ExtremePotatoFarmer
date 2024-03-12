@@ -6,6 +6,7 @@
 #include "EPFBaseBuilding.h"
 #include "EPFHouseBuilding.generated.h"
 
+class AEPFBaseMinion;
 /**
  * 
  */
@@ -22,4 +23,10 @@ public:
 	}
 
 	void BeginPlay();
+
+	UFUNCTION(BlueprintCallable)
+	void SpawnNewMinion();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<AEPFBaseMinion> mMinionClassToSpawn;
 };

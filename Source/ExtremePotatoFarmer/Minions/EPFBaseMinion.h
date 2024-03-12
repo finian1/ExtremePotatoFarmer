@@ -7,6 +7,7 @@
 #include "EPFBaseMinion.generated.h"
 
 class AEPFBaseBuilding;
+class UFloatingPawnMovement;
 
 USTRUCT(BlueprintType)
 struct FMinionStats
@@ -43,10 +44,18 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	UStaticMeshComponent* mMinionMeshComponent;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	UFloatingPawnMovement* mMinionMovementComponent;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FMinionStats mMinionStats;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class UBehaviorTree* mDefaultBehaviourTree;
 
 };
