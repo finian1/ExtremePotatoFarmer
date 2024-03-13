@@ -4,10 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "AIController.h"
 #include "EPFBaseBuilding.generated.h"
 
 class AEPFCitizenMinion;
+class UBehaviorTree;
 
 UCLASS()
 class EXTREMEPOTATOFARMER_API AEPFBaseBuilding : public AActor
@@ -38,6 +38,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float mTimeToWork = 3.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UBehaviorTree* mBuildingWorkerAI;
 
 	//Functions
 

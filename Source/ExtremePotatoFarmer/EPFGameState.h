@@ -56,12 +56,26 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	AEPFBaseBuilding* mTownBarracksBuilding;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	TArray<AEPFCitizenMinion*> mOverallCitizens;
 	//A list of citizens that still need to go to school.
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	TArray<AEPFCitizenMinion*> mUntrainedCitizens;
 	//List of minions that are trained but unemployed.
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	TArray<AEPFCitizenMinion*> mUnemployedTrainedCitizens;
+
+	UFUNCTION(BlueprintCallable)
+	int GetNumberOfCitizens()
+	{
+		return mOverallCitizens.Num();
+	}
+
+	UFUNCTION(BlueprintCallable)
+	int GetNumberOfUnemployedTrainedCitizens()
+	{
+		return mUnemployedTrainedCitizens.Num();
+	}
 
 	void CycleSelectedBuildingForward()
 	{

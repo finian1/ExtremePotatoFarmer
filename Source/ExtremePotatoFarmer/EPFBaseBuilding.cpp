@@ -2,6 +2,7 @@
 
 
 #include "EPFBaseBuilding.h"
+#include "BehaviorTree/BehaviorTree.h"
 
 
 // Sets default values
@@ -13,16 +14,25 @@ AEPFBaseBuilding::AEPFBaseBuilding()
 	mBuildingMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>("Building Mesh");
 	mBuildingMeshComponent->SetupAttachment(GetRootComponent());
 
-	mBuildingMeshComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	mBuildingMeshComponent->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+	
+	FCollisionResponseContainer collision;
+	collision.SetResponse(ECC_Visibility, ECR_Block);
+	collision.SetResponse(ECC_Camera, ECR_Block);
+	collision.SetResponse(ECC_WorldStatic, ECR_Ignore);
+	collision.SetResponse(ECC_WorldDynamic, ECR_Ignore);
+	collision.SetResponse(ECC_Pawn, ECR_Ignore);
+	collision.SetResponse(ECC_PhysicsBody, ECR_Ignore);
+	collision.SetResponse(ECC_Vehicle, ECR_Ignore);
+	collision.SetResponse(ECC_Destructible, ECR_Ignore);
 
+	mBuildingMeshComponent->SetCollisionResponseToChannels(collision);
 
 }
 
 // Called when the game starts or when spawned
 void AEPFBaseBuilding::BeginPlay()
 {
-	Super::BeginPlay();
-	
 }
 
 // Called every frame

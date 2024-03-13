@@ -8,6 +8,7 @@
 
 class AEPFBaseBuilding;
 class UFloatingPawnMovement;
+class UBehaviorTree;
 
 USTRUCT(BlueprintType)
 struct FMinionStats
@@ -44,6 +45,9 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	void RevertToDefaultBehaviour();
+
+	void RunNewBehaviour(UBehaviorTree* newBehaviour);
 
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
@@ -56,6 +60,6 @@ public:
 	FMinionStats mMinionStats;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	class UBehaviorTree* mDefaultBehaviourTree;
+	UBehaviorTree* mDefaultBehaviourTree;
 
 };

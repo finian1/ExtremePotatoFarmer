@@ -4,6 +4,7 @@
 #include "EPFBaseMinion.h"
 #include "GameFramework/FloatingPawnMovement.h"
 #include "../EPFBaseBuilding.h"
+#include "AIController.h"
 #include "BehaviorTree/BehaviorTree.h"
 
 // Sets default values
@@ -36,5 +37,16 @@ void AEPFBaseMinion::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+}
+
+void AEPFBaseMinion::RevertToDefaultBehaviour()
+{
+	RunNewBehaviour(mDefaultBehaviourTree);
+}
+
+void AEPFBaseMinion::RunNewBehaviour(UBehaviorTree* newBehaviour)
+{
+	GetController<AAIController>()->BrainComponent->DestroyComponent();
+	GetController<AAIController>()->RunBehaviorTree(newBehaviour);
 }
 
