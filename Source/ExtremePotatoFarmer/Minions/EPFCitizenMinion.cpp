@@ -1,6 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Se
 #include "EPFCitizenMinion.h"
 #include "../EPFGameState.h"
+#include "EPFThiefMinion.h"
+#include "../EPFBarracksBuilding.h"
 
 void AEPFCitizenMinion::BeginPlay()
 {
@@ -29,5 +31,28 @@ void AEPFCitizenMinion::OnTrained()
 	{
 		state->mUntrainedCitizens.Remove(this);
 		state->mUnemployedTrainedCitizens.Add(this);
+	}
+}
+
+void AEPFCitizenMinion::AttackThief()
+{
+	if (AEPFGameState* state = GetWorld()->GetGameState<AEPFGameState>())
+	{
+		int guardCount = state->mThievesAtBattleground.Num();
+		FRandomStream rand;
+		int rndAttackIndex = rand.RandRange(0, guardCount - 1);
+		state->mThievesAtBattleground[rndAttackIndex]->Damage(mMinionStats.damageToDeal);
+	}
+}
+
+void AEPFCitizenMinion::Damage(float amount)
+{
+	Super::Damage(amount);
+	if (mMinionStats.HP < 0 && mMinionStats.workBuilding->IsA(AEPFBarracksBuilding::StaticClass()))
+	{
+		if (AEPFGameState* state = GetWorld()->GetGameState<AEPFGameState>())
+		{
+			state->mGuardsAtBattleground.Remove(this);
+		}
 	}
 }

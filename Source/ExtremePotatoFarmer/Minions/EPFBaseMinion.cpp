@@ -50,3 +50,8 @@ void AEPFBaseMinion::RunNewBehaviour(UBehaviorTree* newBehaviour)
 	GetController<AAIController>()->RunBehaviorTree(newBehaviour);
 }
 
+void AEPFBaseMinion::Damage(float amount)
+{
+	mMinionStats.HP -= amount;
+}
+

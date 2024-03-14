@@ -21,6 +21,10 @@ public:
 	void OnGrowUp();
 	UFUNCTION(BlueprintCallable)
 	void OnTrained();
+	UFUNCTION(BlueprintCallable)
+	void AttackThief();
+
+	void Damage(float amount) override;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float mTimeToGrowUp = 10.0f;

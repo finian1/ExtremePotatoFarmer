@@ -19,6 +19,9 @@ public:
 	UPROPERTY()
 	float HP;
 
+	UPROPERTY()
+	float damageToDeal;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	AEPFBaseBuilding* homeBuilding;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -48,6 +51,9 @@ public:
 	void RevertToDefaultBehaviour();
 
 	void RunNewBehaviour(UBehaviorTree* newBehaviour);
+
+	UFUNCTION(BlueprintCallable)
+	virtual void Damage(float amount);
 
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)

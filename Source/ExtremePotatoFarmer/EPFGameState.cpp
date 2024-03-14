@@ -4,4 +4,5 @@
 #include "EPFGameState.h"
 #include "EPFBaseBuilding.h"
 #include "Minions/EPFCitizenMinion.h"
+#include "Minions/EPFThiefMinion.h"
 

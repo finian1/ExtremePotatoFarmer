@@ -8,6 +8,7 @@
 
 class AEPFBaseBuilding;
 class AEPFCitizenMinion;
+class AEPFThiefMinion;
 /**
  * 
  */
@@ -57,6 +58,9 @@ public:
 	AEPFBaseBuilding* mTownBarracksBuilding;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	AActor* mBattlegroundLocation;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	TArray<AEPFCitizenMinion*> mOverallCitizens;
 	//A list of citizens that still need to go to school.
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
@@ -64,6 +68,11 @@ public:
 	//List of minions that are trained but unemployed.
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	TArray<AEPFCitizenMinion*> mUnemployedTrainedCitizens;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	TArray<AEPFCitizenMinion*> mGuardsAtBattleground;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	TArray<AEPFThiefMinion*> mThievesAtBattleground;
 
 	UFUNCTION(BlueprintCallable)
 	int GetNumberOfCitizens()
