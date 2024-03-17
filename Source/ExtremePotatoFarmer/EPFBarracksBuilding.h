@@ -19,5 +19,8 @@ public:
 	{
 		mName = "Barracks";
 	}
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	AActor* mBattleGround;
 	
 };

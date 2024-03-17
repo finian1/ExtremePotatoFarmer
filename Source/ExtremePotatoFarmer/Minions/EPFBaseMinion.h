@@ -16,10 +16,10 @@ struct FMinionStats
 	GENERATED_BODY();
 
 public:
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float HP;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float damageToDeal;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)

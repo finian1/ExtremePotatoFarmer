@@ -34,17 +34,6 @@ void AEPFCitizenMinion::OnTrained()
 	}
 }
 
-void AEPFCitizenMinion::AttackThief()
-{
-	if (AEPFGameState* state = GetWorld()->GetGameState<AEPFGameState>())
-	{
-		int guardCount = state->mThievesAtBattleground.Num();
-		FRandomStream rand;
-		int rndAttackIndex = rand.RandRange(0, guardCount - 1);
-		state->mThievesAtBattleground[rndAttackIndex]->Damage(mMinionStats.damageToDeal);
-	}
-}
-
 void AEPFCitizenMinion::Damage(float amount)
 {
 	Super::Damage(amount);

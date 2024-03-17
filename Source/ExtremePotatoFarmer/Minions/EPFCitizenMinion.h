@@ -21,8 +21,6 @@ public:
 	void OnGrowUp();
 	UFUNCTION(BlueprintCallable)
 	void OnTrained();
-	UFUNCTION(BlueprintCallable)
-	void AttackThief();
 
 	void Damage(float amount) override;
 
