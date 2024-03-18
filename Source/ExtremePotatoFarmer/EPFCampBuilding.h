@@ -6,6 +6,8 @@
 #include "EPFBaseBuilding.h"
 #include "EPFCampBuilding.generated.h"
 
+class AEPFThiefMinion;
+
 /**
  * 
  */
@@ -19,5 +21,27 @@ public:
 	{
 		mName = "Bandit Camp";
 	}
+
+	virtual void Tick(float DeltaTime) override;
+
+	UFUNCTION()
+	void SpawnThief();
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	AActor* mBattleGround;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	float mTimeBetweenSpawns;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	int mNumberOfThievesToSpawn;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	int mAggroLevel;
+
+	UPROPERTY()
+	float mTimeSinceLastSpawn = 0.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<AEPFThiefMinion> mMinionClassToSpawn;
 	
 };

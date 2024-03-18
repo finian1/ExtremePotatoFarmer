@@ -33,11 +33,13 @@ AEPFBaseBuilding::AEPFBaseBuilding()
 // Called when the game starts or when spawned
 void AEPFBaseBuilding::BeginPlay()
 {
+	Super::BeginPlay();
 }
 
 // Called every frame
 void AEPFBaseBuilding::Tick(float DeltaTime)
 {
+	Super::Tick(DeltaTime);
 }
 
 void AEPFBaseBuilding::Work()

@@ -2,10 +2,12 @@
 
 
 #include "EPFBaseMinion.h"
+#include "EPFCitizenMinion.h"
 #include "GameFramework/FloatingPawnMovement.h"
 #include "../EPFBaseBuilding.h"
 #include "AIController.h"
 #include "BehaviorTree/BehaviorTree.h"
+#include "../EPFGameState.h"
 
 // Sets default values
 AEPFBaseMinion::AEPFBaseMinion()
@@ -53,5 +55,9 @@ void AEPFBaseMinion::RunNewBehaviour(UBehaviorTree* newBehaviour)
 void AEPFBaseMinion::Damage(float amount)
 {
 	mMinionStats.HP -= amount;
+	if (mMinionStats.HP < 0.0f)
+	{
+		Destroy();
+	}
 }
 

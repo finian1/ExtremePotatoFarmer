@@ -37,11 +37,16 @@ void AEPFCitizenMinion::OnTrained()
 void AEPFCitizenMinion::Damage(float amount)
 {
 	Super::Damage(amount);
-	if (mMinionStats.HP < 0 && mMinionStats.workBuilding->IsA(AEPFBarracksBuilding::StaticClass()))
+	if (mMinionStats.HP < 0)
 	{
 		if (AEPFGameState* state = GetWorld()->GetGameState<AEPFGameState>())
 		{
+
+			state->mOverallCitizens.Remove(static_cast<AEPFCitizenMinion*>(this));
+			state->mUnemployedTrainedCitizens.Remove(static_cast<AEPFCitizenMinion*>(this));
+			state->mUntrainedCitizens.Remove(static_cast<AEPFCitizenMinion*>(this));
 			state->mGuardsAtBattleground.Remove(this);
+			Destroy();
 		}
 	}
 }

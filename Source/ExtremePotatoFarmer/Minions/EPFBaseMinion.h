@@ -26,6 +26,9 @@ public:
 	AEPFBaseBuilding* homeBuilding;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	AEPFBaseBuilding* workBuilding;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool hasWeapon;
 };
 
 UCLASS()

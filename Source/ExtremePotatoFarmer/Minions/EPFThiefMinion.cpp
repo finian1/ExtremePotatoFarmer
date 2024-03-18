@@ -26,13 +26,14 @@ void AEPFThiefMinion::StealPotatoes(int amount)
 
 void AEPFThiefMinion::Damage(float amount)
 {
-	Super::Damage(amount);
+	mMinionStats.HP -= amount;
 	if (mMinionStats.HP < 0)
 	{
 		if (AEPFGameState* state = GetWorld()->GetGameState<AEPFGameState>())
 		{
 			state->mThievesAtBattleground.Remove(this);
 		}
+		Destroy();
 	}
 }
 
