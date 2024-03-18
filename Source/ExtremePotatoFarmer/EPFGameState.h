@@ -16,7 +16,6 @@ UCLASS()
 class EXTREMEPOTATOFARMER_API AEPFGameState : public AGameStateBase
 {
 	GENERATED_BODY()
-	
 public:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
@@ -33,6 +32,8 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	int mNumberOfHouses = 0;
+
+	int mNumberOfFarms = 0;
 
 	//Materials
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
@@ -59,6 +60,8 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	AActor* mBattlegroundLocation;
+
+	
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	TArray<AEPFCitizenMinion*> mOverallCitizens;
@@ -95,4 +98,6 @@ public:
 	{
 		(mCurrentSelectedBuildingIndex - 1) < 0 ? mCurrentSelectedBuildingIndex = mBuildingTypes.Num() - 1 : mCurrentSelectedBuildingIndex -= 1;
 	}
+
+	bool CanAffordBuilding(TSubclassOf<AEPFBaseBuilding> BuildingType);
 };

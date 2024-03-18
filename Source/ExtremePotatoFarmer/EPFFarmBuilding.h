@@ -20,6 +20,7 @@ public:
 	AEPFFarmBuilding()
 	{
 		mName = "Farm";
+		mBuildingCost = {50, 0, 0, 0};
 	}
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)

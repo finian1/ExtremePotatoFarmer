@@ -3,6 +3,7 @@
 
 #include "EPFBaseBuilding.h"
 #include "BehaviorTree/BehaviorTree.h"
+#include "EPFGameState.h"
 
 
 // Sets default values
@@ -54,6 +55,20 @@ void AEPFBaseBuilding::AssignWorker()
 
 void AEPFBaseBuilding::RemoveWorker()
 {
+}
 
+bool AEPFBaseBuilding::CanAfford()
+{
+	if (AEPFGameState* state = GetWorld()->GetGameState<AEPFGameState>())
+	{
+		if (mBuildingCost.gold <= state->mGold &&
+			mBuildingCost.iron <= state->mIron &&
+			mBuildingCost.stone <= state->mStone &&
+			mBuildingCost.wood <= state->mWood)
+		{
+			return true;
+		}
+	}
+	return false;
 }
 

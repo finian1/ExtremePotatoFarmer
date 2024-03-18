@@ -12,6 +12,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "Engine/LocalPlayer.h"
 #include "EPFBaseBuilding.h"
+#include "EPFFarmBuilding.h"
 #include "EPFGameState.h"
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
@@ -157,7 +158,20 @@ void AExtremePotatoFarmerPlayerController::AttemptBuildingPlacement()
 				buildingSpawnLocation = Hit.Location;
 				FActorSpawnParameters params;
 				FRotator rotation;
-				GetWorld()->SpawnActor<AEPFBaseBuilding>(state->mBuildingTypes[state->mCurrentSelectedBuildingIndex], buildingSpawnLocation, rotation, params);
+				if (state->CanAffordBuilding(state->mBuildingTypes[state->mCurrentSelectedBuildingIndex]))
+				{
+					GetWorld()->SpawnActor<AEPFBaseBuilding>(state->mBuildingTypes[state->mCurrentSelectedBuildingIndex], buildingSpawnLocation, rotation, params);
+					FBuildingCost cost = state->mBuildingTypes[state->mCurrentSelectedBuildingIndex].GetDefaultObject()->mBuildingCost;
+					if (state->mBuildingTypes[state->mCurrentSelectedBuildingIndex] == AEPFFarmBuilding::StaticClass())
+					{
+						cost.gold += 25 * state->mNumberOfFarms;
+						state->mNumberOfFarms++;
+					}
+					state->mGold -= cost.gold;
+					state->mIron -= cost.iron;
+					state->mWood -= cost.wood;
+					state->mStone -= cost.stone;
+				}
 			}
 		}
 	}

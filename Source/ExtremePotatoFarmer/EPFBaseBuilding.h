@@ -9,6 +9,24 @@
 class AEPFCitizenMinion;
 class UBehaviorTree;
 
+/// <summary>
+/// gold, wood, iron, stone
+/// </summary>
+USTRUCT(BlueprintType)
+struct FBuildingCost
+{
+	GENERATED_BODY()
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int gold = 0;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int wood = 0;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int iron = 0;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int stone = 0;
+};
+
 UCLASS()
 class EXTREMEPOTATOFARMER_API AEPFBaseBuilding : public AActor
 {
@@ -42,8 +60,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UBehaviorTree* mBuildingWorkerAI;
 
-	//Functions
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FBuildingCost mBuildingCost;
 
+	//Functions
 	UFUNCTION(BlueprintCallable)
 	virtual void Work();
 
@@ -52,4 +72,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	virtual void RemoveWorker();
+
+	UFUNCTION(BlueprintCallable)
+	bool CanAfford();
 };

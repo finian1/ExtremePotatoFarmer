@@ -20,6 +20,7 @@ public:
 	AEPFHouseBuilding()
 	{
 		mName = "House";
+		mBuildingCost = { 0, 5, 0, 6 };
 	}
 
 	void BeginPlay();
