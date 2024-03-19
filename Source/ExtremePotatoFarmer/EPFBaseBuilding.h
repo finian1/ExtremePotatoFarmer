@@ -6,7 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "EPFBaseBuilding.generated.h"
 
-class AEPFCitizenMinion;
+class AEPFBaseMinion;
 class UBehaviorTree;
 
 /// <summary>
@@ -65,10 +65,13 @@ public:
 
 	//Functions
 	UFUNCTION(BlueprintCallable)
+	virtual void Interact() {};
+
+	UFUNCTION(BlueprintCallable)
 	virtual void Work();
 
 	UFUNCTION(BlueprintCallable)
-	virtual void AssignWorker();
+	virtual AEPFBaseMinion* AssignWorker();
 
 	UFUNCTION(BlueprintCallable)
 	virtual void RemoveWorker();

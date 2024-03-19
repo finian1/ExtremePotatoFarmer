@@ -21,7 +21,7 @@ void AEPFFarmBuilding::Work()
 	GeneratePotatoes(mNumOfPotatoesToFarm);
 }
 
-void AEPFFarmBuilding::AssignWorker()
+AEPFBaseMinion* AEPFFarmBuilding::AssignWorker()
 {
 	if (AEPFGameState* state = GetWorld()->GetGameState<AEPFGameState>())
 	{
@@ -32,8 +32,10 @@ void AEPFFarmBuilding::AssignWorker()
 			state->mUnemployedTrainedCitizens.RemoveAt(0);
 			mWorker->mMinionStats.workBuilding = this;
 			mNumberOfWorkers++;
+			return mWorker;
 		}
 	}
+	return nullptr;
 }
 
 void AEPFFarmBuilding::RemoveWorker()
@@ -49,5 +51,10 @@ void AEPFFarmBuilding::RemoveWorker()
 			mNumberOfWorkers--;
 		}
 	}
+}
+
+void AEPFFarmBuilding::Interact()
+{
+	AssignWorker();
 }
 

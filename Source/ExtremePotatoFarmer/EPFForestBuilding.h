@@ -22,6 +22,8 @@ public:
 	}
 	int mAmountOfWoodToProduce = 3;
 
+	void Interact() override;
+
 	UFUNCTION(BlueprintCallable)
 	void GenerateWood(int quantity);
 

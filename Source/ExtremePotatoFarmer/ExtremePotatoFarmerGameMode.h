@@ -6,6 +6,8 @@
 #include "GameFramework/GameModeBase.h"
 #include "ExtremePotatoFarmerGameMode.generated.h"
 
+class AEPFBaseBuilding;
+
 UCLASS(minimalapi)
 class AExtremePotatoFarmerGameMode : public AGameModeBase
 {

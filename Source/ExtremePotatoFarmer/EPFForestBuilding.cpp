@@ -17,3 +17,8 @@ void AEPFForestBuilding::Work()
 	GenerateWood(mAmountOfWoodToProduce);
 }
 
+void AEPFForestBuilding::Interact()
+{
+	AssignWorker();
+}
+

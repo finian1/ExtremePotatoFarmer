@@ -4,6 +4,7 @@
 #include "EPFBaseBuilding.h"
 #include "EPFMultiWorkerBuilding.generated.h"
 
+class AEPFCitizenMinion;
 /**
  *
  */
@@ -17,9 +18,11 @@ public:
 	{
 	}
 
-	void AssignWorker() override;
+	AEPFBaseMinion* AssignWorker() override;
 
 	void RemoveWorker() override;
+
+	void Interact() override;
 
 	TArray<AEPFCitizenMinion*> mWorkers;
 

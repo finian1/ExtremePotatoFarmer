@@ -3,20 +3,23 @@
 #include "EPFGameState.h"
 #include "AIController.h"
 
-void AEPFMultiWorkerBuilding::AssignWorker()
+AEPFBaseMinion* AEPFMultiWorkerBuilding::AssignWorker()
 {
 
 	if (AEPFGameState* state = GetWorld()->GetGameState<AEPFGameState>())
 	{
 		if (state->mUnemployedTrainedCitizens.Num() > 0)
 		{
+			AEPFCitizenMinion* newWorker = state->mUnemployedTrainedCitizens[0];
 			mWorkers.Add(state->mUnemployedTrainedCitizens[0]);
 			state->mUnemployedTrainedCitizens[0]->GetController<AAIController>()->RunBehaviorTree(mBuildingWorkerAI);
 			state->mUnemployedTrainedCitizens[0]->mMinionStats.workBuilding = this;
 			state->mUnemployedTrainedCitizens.RemoveAt(0);
 			mNumberOfWorkers++;
+			return newWorker;
 		}
 	}
+	return nullptr;
 }
 
 void AEPFMultiWorkerBuilding::RemoveWorker()
@@ -32,4 +35,9 @@ void AEPFMultiWorkerBuilding::RemoveWorker()
 			mNumberOfWorkers--;
 		}
 	}
+}
+
+void AEPFMultiWorkerBuilding::Interact()
+{
+	AssignWorker();
 }

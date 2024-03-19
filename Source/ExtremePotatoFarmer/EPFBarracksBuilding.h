@@ -22,5 +22,7 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	AActor* mBattleGround;
+
+	AEPFBaseMinion* AssignWorker();
 	
 };

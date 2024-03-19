@@ -3,6 +3,7 @@
 #include "ExtremePotatoFarmerGameMode.h"
 #include "ExtremePotatoFarmerPlayerController.h"
 #include "ExtremePotatoFarmerCharacter.h"
+#include "EPFBaseBuilding.h"
 #include "UObject/ConstructorHelpers.h"
 
 AExtremePotatoFarmerGameMode::AExtremePotatoFarmerGameMode()

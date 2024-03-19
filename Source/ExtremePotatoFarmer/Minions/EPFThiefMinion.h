@@ -23,6 +23,6 @@ public:
 
 	void Damage(float amount) override;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int mAmountOfPotatoesToSteal = 2;
 };

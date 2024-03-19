@@ -4,6 +4,7 @@
 #include "EPFThiefMinion.h"
 #include "../EPFGameState.h"
 #include "EPFCitizenMinion.h"
+#include "../EPFCampBuilding.h"
 
 void AEPFThiefMinion::AttackGuard()
 {
@@ -20,7 +21,7 @@ void AEPFThiefMinion::StealPotatoes(int amount)
 {
 	if (AEPFGameState* state = GetWorld()->GetGameState<AEPFGameState>())
 	{
-		state->mNumberOfPotatoes -= amount;
+		state->mNumberOfPotatoes -= FMath::Min(amount, state->mNumberOfPotatoes);
 	}
 }
 
@@ -33,6 +34,7 @@ void AEPFThiefMinion::Damage(float amount)
 		{
 			state->mThievesAtBattleground.Remove(this);
 		}
+		static_cast<AEPFCampBuilding*>(mMinionStats.workBuilding)->mAggroLevel++;
 		Destroy();
 	}
 }

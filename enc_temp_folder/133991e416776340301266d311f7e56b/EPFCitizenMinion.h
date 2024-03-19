@@ -24,12 +24,10 @@ public:
 
 	void Damage(float amount) override;
 
-	void EatFood();
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float mTimeToGrowUp = 4.0f;
+	float mTimeToGrowUp = 10.0f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float mTimeToTrain = 4.0f;
+	float mTimeToTrain = 10.0f;
 
 	UPROPERTY(BlueprintReadWrite)
 	bool mIsAdult = false;

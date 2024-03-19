@@ -18,6 +18,8 @@ class EXTREMEPOTATOFARMER_API AEPFGameState : public AGameStateBase
 	GENERATED_BODY()
 public:
 
+	virtual void BeginPlay() override;
+
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
 	TArray<TSubclassOf<AEPFBaseBuilding>> mBuildingTypes;
 
@@ -46,22 +48,25 @@ public:
 	int mGold = 0;
 
 	//Primary town buildings
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<AEPFBaseBuilding> mTownSchoolBuildingClass;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	AEPFBaseBuilding* mTownSchoolBuilding;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<AEPFBaseBuilding> mTownMineBuildingClass;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	AEPFBaseBuilding* mTownMineBuilding;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<AEPFBaseBuilding> mTownForestBuildingClass;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	AEPFBaseBuilding* mTownForestBuilding;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<AEPFBaseBuilding> mTownBarracksBuildingClass;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	AEPFBaseBuilding* mTownBarracksBuilding;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-	AActor* mBattlegroundLocation;
-
-	
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	TArray<AEPFCitizenMinion*> mOverallCitizens;
@@ -81,6 +86,17 @@ public:
 	int GetNumberOfCitizens()
 	{
 		return mOverallCitizens.Num();
+	}
+
+	UFUNCTION(BlueprintCallable)
+	int GetNumberOfThieves()
+	{
+		return mThievesAtBattleground.Num();
+	}
+	UFUNCTION(BlueprintCallable)
+	int GetNumberOfGuards()
+	{
+		return mGuardsAtBattleground.Num();
 	}
 
 	UFUNCTION(BlueprintCallable)

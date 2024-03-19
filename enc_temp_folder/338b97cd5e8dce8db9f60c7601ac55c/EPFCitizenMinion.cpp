@@ -39,14 +39,6 @@ void AEPFCitizenMinion::OnTrained()
 	}
 }
 
-void AEPFCitizenMinion::EatFood()
-{
-	if (AEPFGameState* state = GetWorld()->GetGameState<AEPFGameState>())
-	{
-
-	}
-}
-
 void AEPFCitizenMinion::Damage(float amount)
 {
 	Super::Damage(amount);

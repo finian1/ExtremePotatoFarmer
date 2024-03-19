@@ -4,9 +4,18 @@
 #include "EPFGameState.h"
 #include "EPFBaseBuilding.h"
 #include "EPFFarmBuilding.h"
+#include "Kismet/GameplayStatics.h"
 #include "Minions/EPFCitizenMinion.h"
 #include "Minions/EPFThiefMinion.h"
 
+void AEPFGameState::BeginPlay()
+{
+	Super::BeginPlay();
+	mTownSchoolBuilding = static_cast<AEPFBaseBuilding*>(UGameplayStatics::GetActorOfClass(GetWorld(), mTownSchoolBuildingClass));
+	mTownMineBuilding = static_cast<AEPFBaseBuilding*>(UGameplayStatics::GetActorOfClass(GetWorld(), mTownMineBuildingClass));
+	mTownForestBuilding = static_cast<AEPFBaseBuilding*>(UGameplayStatics::GetActorOfClass(GetWorld(), mTownForestBuildingClass));
+	mTownBarracksBuilding = static_cast<AEPFBaseBuilding*>(UGameplayStatics::GetActorOfClass(GetWorld(), mTownBarracksBuildingClass));
+}
 
 bool AEPFGameState::CanAffordBuilding(TSubclassOf<AEPFBaseBuilding> BuildingType)
 {

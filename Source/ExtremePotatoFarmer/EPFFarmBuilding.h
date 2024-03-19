@@ -35,7 +35,9 @@ public:
 
 	void Work() override;
 
-	void AssignWorker() override;
+	AEPFBaseMinion* AssignWorker() override;
 
 	void RemoveWorker() override;
+
+	void Interact() override;
 };

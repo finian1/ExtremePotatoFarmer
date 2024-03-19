@@ -151,7 +151,7 @@ void AExtremePotatoFarmerPlayerController::AttemptBuildingPlacement()
 		{
 			if (AEPFBaseBuilding* building = dynamic_cast<AEPFBaseBuilding*>(Hit.GetActor()))
 			{
-				building->AssignWorker();
+				building->Interact();
 			}
 			else
 			{
@@ -162,7 +162,7 @@ void AExtremePotatoFarmerPlayerController::AttemptBuildingPlacement()
 				{
 					GetWorld()->SpawnActor<AEPFBaseBuilding>(state->mBuildingTypes[state->mCurrentSelectedBuildingIndex], buildingSpawnLocation, rotation, params);
 					FBuildingCost cost = state->mBuildingTypes[state->mCurrentSelectedBuildingIndex].GetDefaultObject()->mBuildingCost;
-					if (state->mBuildingTypes[state->mCurrentSelectedBuildingIndex] == AEPFFarmBuilding::StaticClass())
+					if (state->mBuildingTypes[state->mCurrentSelectedBuildingIndex]->IsChildOf(AEPFFarmBuilding::StaticClass()))
 					{
 						cost.gold += 25 * state->mNumberOfFarms;
 						state->mNumberOfFarms++;

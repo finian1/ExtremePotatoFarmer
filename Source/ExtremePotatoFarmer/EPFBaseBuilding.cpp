@@ -4,6 +4,7 @@
 #include "EPFBaseBuilding.h"
 #include "BehaviorTree/BehaviorTree.h"
 #include "EPFGameState.h"
+#include "Minions/EPFBaseMinion.h"
 
 
 // Sets default values
@@ -48,9 +49,9 @@ void AEPFBaseBuilding::Work()
 
 }
 
-void AEPFBaseBuilding::AssignWorker()
+AEPFBaseMinion* AEPFBaseBuilding::AssignWorker()
 {
-	
+	return nullptr;
 }
 
 void AEPFBaseBuilding::RemoveWorker()
