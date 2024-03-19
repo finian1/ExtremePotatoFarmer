@@ -38,10 +38,16 @@ public:
 
 	FTimerHandle mGrowUpTimerHandle;
 	FTimerHandle mTrainingTimerHandle;
+	FTimerHandle mEatingTimerHandle;
 
 	FVector mChildScale = { 0.2f, 0.2f, 0.2f };
 	FVector mGrownScale = { 0.4f, 0.4f, 0.4f };
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UMaterialInterface* mTrainedMaterial;
+
+	float mDamageIfHungry = 5.0f;
+	float mTimeBetweenEating = 10.0f;
+	float mAmountToHealOnEating = 0.2f;
+	int mNumOfPotatoesToEat = 1;
 };

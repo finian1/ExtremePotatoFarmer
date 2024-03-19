@@ -10,6 +10,7 @@ void AEPFCitizenMinion::BeginPlay()
 	Super::BeginPlay();
 	
 	GetWorld()->GetTimerManager().SetTimer(mGrowUpTimerHandle, this, &AEPFCitizenMinion::OnGrowUp, mTimeToGrowUp, false);
+	GetWorld()->GetTimerManager().SetTimer(mEatingTimerHandle, this, &AEPFCitizenMinion::EatFood, mTimeBetweenEating, true);
 	if (AEPFGameState* state = GetWorld()->GetGameState<AEPFGameState>())
 	{
 		SetActorScale3D(mChildScale);
@@ -43,7 +44,15 @@ void AEPFCitizenMinion::EatFood()
 {
 	if (AEPFGameState* state = GetWorld()->GetGameState<AEPFGameState>())
 	{
-
+		if (state->mNumberOfPotatoes < mNumOfPotatoesToEat)
+		{
+			Damage(mDamageIfHungry);
+		}
+		else 
+		{
+			state->mNumberOfPotatoes -= mNumOfPotatoesToEat;
+			mMinionStats.HP += mAmountToHealOnEating;
+		}
 	}
 }
 

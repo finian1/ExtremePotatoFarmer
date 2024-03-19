@@ -27,7 +27,7 @@ public:
 	int mCurrentSelectedBuildingIndex = 0;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-	int mNumberOfPotatoes = 0;
+	int mNumberOfPotatoes = 300;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	int mNumberOfCitizens = 0;
@@ -39,13 +39,13 @@ public:
 
 	//Materials
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-	int mWood = 0;
+	int mWood = 20;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-	int mStone = 0;
+	int mStone = 10;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-	int mIron = 0;
+	int mIron = 9;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-	int mGold = 0;
+	int mGold = 25;
 
 	//Primary town buildings
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)

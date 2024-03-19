@@ -18,6 +18,7 @@ struct FMinionStats
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float HP;
+	float maxHP = HP;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float damageToDeal;
