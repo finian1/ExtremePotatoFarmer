@@ -21,7 +21,7 @@ void AEPFCampBuilding::Tick(float DeltaTime)
 		if (AEPFGameState* state = GetWorld()->GetGameState<AEPFGameState>())
 		{
 			float currentSpawnTime = mTimeBetweenSpawns;
-			currentSpawnTime -= FMath::Min(mMaxDecreaseForSpawnTime, state->mNumberOfPotatoes);
+			currentSpawnTime -= FMath::Max(FMath::Min(mMaxDecreaseForSpawnTime, state->mNumberOfPotatoes - 300), 0);
 			float currentAggroDecreaseTime = mTimeBetweenAggroDecrease;
 			currentAggroDecreaseTime += state->GetNumberOfGuards() * mAggroDecreaseTimerShiftPerGuard;
 			
