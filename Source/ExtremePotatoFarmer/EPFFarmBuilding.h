@@ -17,14 +17,16 @@ class EXTREMEPOTATOFARMER_API AEPFFarmBuilding : public AEPFBaseBuilding
 
 public:
 
+	virtual void BeginPlay() override;
+
 	AEPFFarmBuilding()
 	{
 		mName = "Farm";
 		mBuildingCost = {50, 0, 0, 0};
 	}
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-	int mNumOfPotatoesToFarm = 3;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int mNumOfPotatoesToFarm = 9;
 
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)

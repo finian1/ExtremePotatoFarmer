@@ -8,6 +8,7 @@
 
 class AEPFBaseMinion;
 class UBehaviorTree;
+class UTextRenderComponent;
 
 /// <summary>
 /// gold, wood, iron, stone
@@ -48,8 +49,13 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	//Variables
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UStaticMeshComponent* mBuildingMeshComponent;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UTextRenderComponent* mAlertTextComponent;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FText mAlertText = FText::FromString("!");
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	int mNumberOfWorkers = 0;
@@ -78,4 +84,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	bool CanAfford();
+
+	UFUNCTION(BlueprintCallable)
+	void ShowAlertText();
+	UFUNCTION(BlueprintCallable)
+	void HideAlertText();
 };

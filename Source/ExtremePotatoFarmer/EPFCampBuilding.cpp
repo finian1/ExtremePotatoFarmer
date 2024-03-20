@@ -30,9 +30,9 @@ void AEPFCampBuilding::Tick(float DeltaTime)
 				int finalNumOfThievesToSpawn = mNumberOfThievesToSpawn;
 				finalNumOfThievesToSpawn += mAdditionalThievesPerAggroLevel * mAggroLevel;
 
-				if (finalNumOfThievesToSpawn + state->GetNumberOfThieves() > mMaxThieves)
+				if (finalNumOfThievesToSpawn + state->GetNumberOfThieves() > mMaxThieves + state->mNumberOfFarms * 2)
 				{
-					finalNumOfThievesToSpawn = mMaxThieves - state->GetNumberOfThieves();
+					finalNumOfThievesToSpawn = (mMaxThieves + state->mNumberOfFarms * 2) - state->GetNumberOfThieves();
 				}
 				for (int i = 0; i < finalNumOfThievesToSpawn; i++)
 				{

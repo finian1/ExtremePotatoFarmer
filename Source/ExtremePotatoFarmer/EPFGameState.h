@@ -34,7 +34,7 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	int mNumberOfHouses = 0;
-
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	int mNumberOfFarms = 0;
 
 	//Materials

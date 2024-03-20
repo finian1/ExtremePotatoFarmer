@@ -164,8 +164,7 @@ void AExtremePotatoFarmerPlayerController::AttemptBuildingPlacement()
 					FBuildingCost cost = state->mBuildingTypes[state->mCurrentSelectedBuildingIndex].GetDefaultObject()->mBuildingCost;
 					if (state->mBuildingTypes[state->mCurrentSelectedBuildingIndex]->IsChildOf(AEPFFarmBuilding::StaticClass()))
 					{
-						cost.gold += 25 * state->mNumberOfFarms;
-						state->mNumberOfFarms++;
+						cost.gold += 25 * (state->mNumberOfFarms - 1);
 					}
 					state->mGold -= cost.gold;
 					state->mIron -= cost.iron;

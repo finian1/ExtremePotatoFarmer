@@ -7,6 +7,14 @@
 #include "Minions/EPFCitizenMinion.h"
 
 
+void AEPFFarmBuilding::BeginPlay()
+{
+	ShowAlertText();
+	if (AEPFGameState* state = GetWorld()->GetGameState<AEPFGameState>())
+	{
+		state->mNumberOfFarms++;
+	}
+}
 
 void AEPFFarmBuilding::GeneratePotatoes(int quantity)
 {
@@ -32,6 +40,7 @@ AEPFBaseMinion* AEPFFarmBuilding::AssignWorker()
 			state->mUnemployedTrainedCitizens.RemoveAt(0);
 			mWorker->mMinionStats.workBuilding = this;
 			mNumberOfWorkers++;
+			HideAlertText();
 			return mWorker;
 		}
 	}
@@ -48,6 +57,7 @@ void AEPFFarmBuilding::RemoveWorker()
 			mWorker->RevertToDefaultBehaviour();
 			mWorker->mMinionStats.workBuilding = nullptr;
 			mWorker = nullptr;
+			ShowAlertText();
 			mNumberOfWorkers--;
 		}
 	}

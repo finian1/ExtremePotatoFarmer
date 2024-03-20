@@ -5,6 +5,7 @@
 #include "BehaviorTree/BehaviorTree.h"
 #include "EPFGameState.h"
 #include "Minions/EPFBaseMinion.h"
+#include "Components/TextRenderComponent.h"
 
 
 // Sets default values
@@ -15,9 +16,7 @@ AEPFBaseBuilding::AEPFBaseBuilding()
 
 	mBuildingMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>("Building Mesh");
 	mBuildingMeshComponent->SetupAttachment(GetRootComponent());
-
 	mBuildingMeshComponent->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
-	
 	FCollisionResponseContainer collision;
 	collision.SetResponse(ECC_Visibility, ECR_Block);
 	collision.SetResponse(ECC_Camera, ECR_Block);
@@ -30,12 +29,17 @@ AEPFBaseBuilding::AEPFBaseBuilding()
 
 	mBuildingMeshComponent->SetCollisionResponseToChannels(collision);
 
+	mAlertTextComponent = CreateDefaultSubobject<UTextRenderComponent>("Alert Text");
+	mAlertTextComponent->SetupAttachment(mBuildingMeshComponent);
+
+	mAlertTextComponent->SetText(mAlertText);
 }
 
 // Called when the game starts or when spawned
 void AEPFBaseBuilding::BeginPlay()
 {
 	Super::BeginPlay();
+	mAlertTextComponent->SetVisibility(false);
 }
 
 // Called every frame
@@ -71,5 +75,15 @@ bool AEPFBaseBuilding::CanAfford()
 		}
 	}
 	return false;
+}
+
+void AEPFBaseBuilding::ShowAlertText()
+{
+	mAlertTextComponent->SetVisibility(true);
+}
+
+void AEPFBaseBuilding::HideAlertText()
+{
+	mAlertTextComponent->SetVisibility(false);
 }
 

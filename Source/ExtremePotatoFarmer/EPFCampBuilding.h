@@ -50,7 +50,7 @@ public:
 	float mAdditionalThievesPerAggroLevel = 0.2f;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	int mMaxThieves = 100;
+	int mMaxThieves = 5;
 	//The maximum spawn timer decrease based on how many potatoes the player has
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	float mMaxDecreaseForSpawnTime = 30.0f;
