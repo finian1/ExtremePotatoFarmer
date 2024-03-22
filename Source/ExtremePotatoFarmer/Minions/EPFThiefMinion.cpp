@@ -21,7 +21,7 @@ void AEPFThiefMinion::StealPotatoes(int amount)
 {
 	if (AEPFGameState* state = GetWorld()->GetGameState<AEPFGameState>())
 	{
-		state->mNumberOfPotatoes -= FMath::Min(amount, state->mNumberOfPotatoes);
+		state->RemovePotatoes(FMath::Min(amount, state->mNumberOfPotatoes));
 	}
 }
 

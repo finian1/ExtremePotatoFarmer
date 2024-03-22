@@ -34,3 +34,12 @@ bool AEPFGameState::CanAffordBuilding(TSubclassOf<AEPFBaseBuilding> BuildingType
 	}
 	return true;
 }
+
+void AEPFGameState::RemovePotatoes(int amount)
+{
+	mNumberOfPotatoes -= amount;
+	if (mNumberOfPotatoes <= 0)
+	{
+		mGameOver = true;
+	}
+}

@@ -21,20 +21,21 @@ void AEPFCampBuilding::Tick(float DeltaTime)
 		if (AEPFGameState* state = GetWorld()->GetGameState<AEPFGameState>())
 		{
 			float currentSpawnTime = mTimeBetweenSpawns;
-			currentSpawnTime -= FMath::Max(FMath::Min(mMaxDecreaseForSpawnTime, state->mNumberOfPotatoes - 300), 0);
+			currentSpawnTime -= FMath::Max(FMath::Min(mMaxDecreaseForSpawnTime, (state->mNumberOfPotatoes/2.0f) - 300), 0);
 			float currentAggroDecreaseTime = mTimeBetweenAggroDecrease;
 			currentAggroDecreaseTime += state->GetNumberOfGuards() * mAggroDecreaseTimerShiftPerGuard;
 			
 			if (mTimeSinceLastSpawn >= currentSpawnTime)
 			{
-				int finalNumOfThievesToSpawn = mNumberOfThievesToSpawn;
+				float finalNumOfThievesToSpawn = mNumberOfThievesToSpawn;
 				finalNumOfThievesToSpawn += mAdditionalThievesPerAggroLevel * mAggroLevel;
-
+				finalNumOfThievesToSpawn += state->GetNumberOfGuards() * mAggroBoostPerGuard;
+				finalNumOfThievesToSpawn += state->mNumberOfFarms * mAggroBoostPerFarm;
 				if (finalNumOfThievesToSpawn + state->GetNumberOfThieves() > mMaxThieves + state->mNumberOfFarms * 2)
 				{
 					finalNumOfThievesToSpawn = (mMaxThieves + state->mNumberOfFarms * 2) - state->GetNumberOfThieves();
 				}
-				for (int i = 0; i < finalNumOfThievesToSpawn; i++)
+				for (int i = 0; i < (int)finalNumOfThievesToSpawn; i++)
 				{
 					SpawnThief();
 				}

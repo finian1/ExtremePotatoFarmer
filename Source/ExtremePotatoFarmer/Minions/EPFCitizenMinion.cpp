@@ -50,7 +50,7 @@ void AEPFCitizenMinion::EatFood()
 		}
 		else 
 		{
-			state->mNumberOfPotatoes -= mNumOfPotatoesToEat;
+			state->RemovePotatoes(mNumOfPotatoesToEat);
 			mMinionStats.HP += mAmountToHealOnEating;
 		}
 	}

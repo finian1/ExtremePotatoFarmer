@@ -48,15 +48,19 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	float mAdditionalThievesPerAggroLevel = 0.2f;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	float mAggroBoostPerFarm = 0.2f;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	float mAggroBoostPerGuard = 0.1f;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	int mMaxThieves = 5;
 	//The maximum spawn timer decrease based on how many potatoes the player has
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	float mMaxDecreaseForSpawnTime = 30.0f;
+	float mMaxDecreaseForSpawnTime = 20.0f;
 	//How many seconds is added to the aggro decrease timer for each guard
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	float mAggroDecreaseTimerShiftPerGuard = 5.0f;
+	float mAggroDecreaseTimerShiftPerGuard = 0.5f;
 
 
 	UPROPERTY()

@@ -82,6 +82,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	TArray<AEPFThiefMinion*> mThievesAtBattleground;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	bool mGameOver = false;
+
 	UFUNCTION(BlueprintCallable)
 	int GetNumberOfCitizens()
 	{
@@ -116,4 +119,6 @@ public:
 	}
 
 	bool CanAffordBuilding(TSubclassOf<AEPFBaseBuilding> BuildingType);
+
+	void RemovePotatoes(int amount);
 };
